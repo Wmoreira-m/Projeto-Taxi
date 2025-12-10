@@ -1,0 +1,22 @@
+{
+  "name": "taxi-wagner-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "migrate": "ts-node ./node_modules/knex/bin/cli.js --knexfile ./knexfile.ts migrate:latest",
+    "seed": "ts-node ./node_modules/knex/bin/cli.js --knexfile ./knexfile.ts seed:run",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.22.1",
+    "knex": "^2.4.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.2"
+  }
+}
