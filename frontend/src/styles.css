@@ -1,697 +1,1100 @@
-:root {
-  --primary: #111;
-  --secondary: #FFD54F;
-  --bg: #f9f9f9;
-  --card-bg: #fff;
-  --radius: 10px;
-  --shadow: 0 4px 18px rgba(0,0,0,0.08);
-  --font: "Poppins", sans-serif;
+  /* ===================================================================
+    ROOT + BASE
+  =================================================================== */
+
+ @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+
+  :root {
+    --primary: #111;
+    --secondary: #FFD54F;
+    --bg: #f9f9f9;
+    --card-bg: #fff;
+    --radius: 10px;
+    --shadow: 0 4px 18px rgba(0,0,0,0.08);
+    --font-clean: "IBM Plex Sans", sans-serif; 
+  }
+
+  body, button, input, a, .brand strong, .links a, .header-actions a{
+  font-family: var(--font-clean) !important;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font);
+  html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; 
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* empurra o footer pro final */
+  width: 100%;
 }
 
 body {
-  background: var(--bg);
-  color: #222;
-}
-
-nav a {
-  margin-left: 20px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: var(--secondary);
-}
-
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.hero h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #555;
-}
-
-.section-title {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 25px;
-}
-
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 20px 40px;
-}
-
-.card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 25px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card h3 {
-  margin-bottom: 8px;
-}
-
-.card p {
-  color: #555;
-  font-size: 15px;
-  margin-bottom: 2px;
-}
-
-.price {
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-form {
-  max-width: 550px;
-  margin: 40px auto;
-  background: var(--card-bg);
-  box-shadow: var(--shadow);
-  padding: 30px;
-  border-radius: var(--radius);
-}
-
-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: 600;
-}
-
-form input,
-form textarea,
-form select {
-  width: 100%;
-  padding: 10px;
-  border-radius: var(--radius);
-  border: 1px solid #ccc;
-  margin-top: 5px;
-}
-
-button {
-  width: 100%;
-  background: var(--secondary);
-  color: black;
-  padding: 14px;
-  border: none;
-  border-radius: var(--radius);
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-button:hover {
-  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 footer {
   text-align: center;
   padding: 8px 0;
-  font-size: 11px;
-  margin-top: auto;
-  background: transparent;
+  font-size: 12px;
   color: #666;
   border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-html, body, #root {
-  height: 100%;
-  margin: 0;
-}
-
-.app-container {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-content {
-  flex: 1;
-}
-
-.booking-form textarea {
-  height: 70px;
-  resize: vertical;
-}
-
-.row-2 {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.row-2 div {
-  flex: 1;
-}
-
-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #444;
-}
-
-select {
-  background: white;
-}
-
-/* ---------- Contato: layout moderno ---------- */
-.contact-page {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 60px 20px;
-}
-
-.contact-card {
+  background: #fff;
   width: 100%;
-  max-width: 880px;
-  background: linear-gradient(180deg, rgba(255,255,255,1), rgba(250,250,252,1));
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(12,12,20,0.06);
-  padding: 36px;
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
+  position: static;
 }
 
-/* left text column */
-.contact-info {
-  flex: 1.2;
-  min-width: 260px;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+  }
 
-.contact-info h2 {
-  font-size: 28px;
-  margin-bottom: 12px;
-  color: var(--primary);
-}
+  body {
+    background: var(--bg);
+    color: #222;
+  }
 
-.contact-info p {
-  color: #444;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  font-size: 15px;
-}
+  /* ===================================================================
+    HEADER – VERSÃO CORRIGIDA + RESPONSIVA + TAXI PRESERVADO
+  =================================================================== */
 
-/* right action column */
-.contact-actions {
-    flex: 0.8;
+  .site-header {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 20px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+   
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  /* brand */
+  .brand strong {
+    font-size: 20px;
+    color: #fff;
+  }
+
+
+  .header-actions .links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .header-actions .links a:hover {
+    color: var(--secondary);
+  }
+
+  .header-agendar {
+    background: var(--secondary);
+    padding: 10px 26px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* ===================================================================
+    MOBILE HEADER + MENU HAMBURGUER
+  =================================================================== */
+
+  /* escondemos os links e mostramos o menu mobile */
+
+  .mobile-only { display: none; }
+  .desktop-only { display: flex; }
+
+  .hamburger {
+    font-size: 28px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 60px;
+    right: 12px;
+    background: #111;
+    padding: 18px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    align-items: stretch;
-}
+    z-index: 99999;
+  }
 
-/* whatsapp button */
-.wa-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(90deg,#25D366,#1DA851);
-  color: white;
-  padding: 14px 22px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 700;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(37,211,102,0.18);
-  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
-  text-decoration: none;
-}
+  .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
 
-.wa-button:hover { transform: translateY(-3px); opacity: .98; box-shadow: 0 14px 30px rgba(12,12,20,0.08); }
-.wa-button:active { transform: translateY(-1px); }
+  .mobile-menu button {
+    width: 100% !important;
+  }
 
-.wa-button svg { width: 20px; height: 20px; fill: white; }
+  /* MOBILE BREAKPOINT */
+  @media (max-width: 880px) {
+    .desktop-only { display: none; }
+    .mobile-only { display: block; }
 
-/* phone line */
-.phone-line {
-  color: #666;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 6px;
-}
+    .header-anim-wrap { display: flex !important; }
 
-/* subtle small note */
-.contact-note {
-  color: #888;
-  font-size: 13px;
-}
+    .taxi-svg { width: 60px; }
+  }
 
-/* mobile */
-@media (max-width: 880px) {
-  .contact-card { flex-direction: column; padding: 24px; }
-  .contact-actions { align-items: center; }
-  .contact-info { text-align: center; }
-  .phone-line { text-align: center; }
-}
+  /* telas muito pequenas */
+  @media (max-width: 420px) {
+    .brand strong { font-size: 18px; }
+    .taxi-svg { width: 50px; }
+  }
 
-/* ---------------- Modal / Popup — COMPLETO (SUBSTITUIR TUDO) ---------------- */
+  /* ===================================================================
+    PÁGINA / HERO / SERVIÇOS / CARDS
+  =================================================================== */
 
-/* Overlay */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.56);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .22s ease;
-}
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+  }
 
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
-}
+  .hero h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
 
-/* wrapper para o modal e o botão X */
-.modal-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  display: flex;
-  justify-content: center;
-}
+  .hero p {
+    font-size: 18px;
+    color: #ffffff;
+  }
 
-/* Modal card */
-.modal-card {
-  width: 100%;
-  background: linear-gradient(180deg, #ffffff, #fafafc);
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(12,12,20,0.24);
-  overflow: auto;
-  transform: translateY(16px) scale(.99);
-  opacity: 0;
-  transition: transform .28s cubic-bezier(.2,.9,.35,1), opacity .28s ease;
-  padding: 24px 28px; /* AQUI AFASTA MAIS DO SCROLL */
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  max-height: calc(100vh - 120px);
-  scrollbar-gutter: stable both-edges; /* AFASSTA A SCROLLBAR DO FORM */
-}
+  .section-title {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
 
-/* Animação ao abrir */
-.modal-overlay.open .modal-card {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 40px;
+  }
 
-/* Botão X — canto superior esquerdo e amarelo */
-.modal-close {
-  /* garante que não herde largura global */
-  width: auto !important;
-  min-width: 0;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 25px;
+    transition: 0.3s;
+  }
 
-  /* posição */
-  position: absolute;
-  top: -18px;
-  left: 2px;
+  .card:hover {
+    transform: translateY(-4px);
+  }
 
-  /* visual */
-  background: var(--secondary);
-  color: #111;
-  border: none;
-  font-size: 16px;
-  font-weight: 800;
-  border-radius: 10px;
-  padding: 6px 10px; /* pequeno e compacto */
-  cursor: pointer;
-  z-index: 10001;
+  /* mobile cards */
+  @media (max-width: 480px) {
+    .services {
+      padding: 20px;
+      grid-template-columns: 1fr;
+    }
+  }
 
-  /* evita que outline quebre o layout */
-  box-sizing: border-box;
-}
+  /* ===================================================================
+    CONTATO PÁGINA (mantida e corrigida)
+  =================================================================== */
 
-/* remove restos de layouts antigos */
-.modal-card .modal-left,
-.modal-card .modal-right,
-.modal-card .modal-note,
-.modal-card .modal-footer {
-  display: none !important;
-}
+  .contact-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
 
-/* FORM estilizado dentro do modal */
-.modal-card form {
-  width: 100%;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+  .contact-card {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    display: flex;
+    gap: 30px;
+  }
 
-/* Inputs */
-.modal-card form input,
-.modal-card form textarea,
-.modal-card form select {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: #fff;
-  color: #111;
-  font-size: 14px;
-  outline: none;
-  transition: 0.12s ease;
-}
+  /* mobile contato */
+  @media (max-width: 880px) {
+    .contact-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
 
-.modal-card form input:focus,
-.modal-card form textarea:focus,
-.modal-card form select:focus {
-  border-color: rgba(0,0,0,0.18);
-  box-shadow: 0 6px 18px rgba(12,12,20,0.06);
-}
+  /* ===================================================================
+    FOOTER
+  =================================================================== */
 
-/* placeholder */
-.modal-card form input::placeholder,
-.modal-card form textarea::placeholder {
-  color: #aaa;
-}
+  footer {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 11px;
+    color: #666;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
 
-/* labels */
-.modal-card form label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 4px;
-}
+  /* ===================================================================
+    MODAL – Mantido, apenas ajustes de responsividade
+  =================================================================== */
 
-/* textarea */
-.modal-card form textarea {
-  min-height: 90px;
-  resize: vertical;
-}
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+  }
 
-/* Scrollbar bonita e afastada */
-.modal-card::-webkit-scrollbar {
-  width: 12px;
-}
-
-.modal-card::-webkit-scrollbar-track {
-  background: transparent;
-  margin: 12px;
-}
-
-.modal-card::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.18);
-  border-radius: 10px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-
-/* Mobile */
-@media (max-width: 640px) {
   .modal-card {
-    padding: 18px 20px;
-    max-height: calc(100vh - 70px);
+    background: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
   }
-  .modal-close {
-    top: 10px;
-    left: 10px;
-    padding: 5px 8px;
-    font-size: 15px;
+
+  /* mobile modal */
+  @media (max-width: 520px) {
+    .modal-card {
+      max-height: 88vh;
+      padding: 18px;
+    }
   }
-}
 
-/* -------- Header + taxi centered + actions right -------- */
-.site-header {
-  background: var(--primary);
-  color: #fff;
-  padding: 12px 20px;
-  position: relative;
-  z-index: 50;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
 
-/* container com 3 áreas: brand | center anim | actions (right) */
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  /* HEADER BASE */
+  .site-header {
+    background: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+
+  /* GRID PARA ALINHAR: ESQUERDA | CENTRO | DIREITA */
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-actions {
+  margin-left: auto !important;
   display: flex;
   align-items: center;
-  gap: 18px;
-  justify-content: space-between;
-  min-height: 56px;
-}
-
-/* brand à esquerda (sempre no início) */
-.brand {
-  flex: 0 0 auto;
-  margin-right: 12px;
-}
-.brand strong {
-  font-size: 20px;
-  color: #fff;
-  display: inline-block;
-}
-
-/* área central — força o centro absoluto disponível */
-.header-anim-wrap {
-  flex: 1 1 0%;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* garante que o taxi fique no centro */
-  min-width: 260px;
-  max-width: 400px;
-  height: 44px;
-  position: relative;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* wrapper interno */
-.header-anim-wrap .road {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* marcas de derrapagem */
-.header-anim-wrap .tire-marks {
-  position: absolute;
-  left: 0;
-  top: 26px;
-  height: 4px;
-  width: 200%;
-  background-image: radial-gradient(circle at 3px 4px, rgb(255, 255, 255) 15px, transparent 3px);
-  background-size: 55px 4px;
-  opacity: 0.45;
-}
-
-/* taxi centralizado (usa transform para movimento) */
-.taxi-svg {
-  width: 84px;
-  height: auto;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-150%, -50%); /* começa fora à esquerda relativo ao centro */
-  filter: drop-shadow(0 6px 10px rgba(255, 255, 255, 0.14));
-  animation: taxi-drive-center 3.8s linear infinite;
-  pointer-events: none;
-}
-
-/* animação adaptada para partir da esquerda do centro e passar pela área central */
-@keyframes taxi-drive-center {
-  0%   { transform: translate(-150%, -50%) scale(.98); opacity: 0; }
-  6%   { opacity: 1; }
-  50%  { transform: translate(50%, -52%) scale(1); }  /* passa pelo centro (translate(0,-50%) seria exato centro) */
-  94%  { opacity: 1; }
-  100% { transform: translate(190%, -50%) scale(.98); opacity: 0; }
-}
-
-/* skid marks movement */
-@keyframes skid-marks {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(-36px); }
-  100% { transform: translateX(0); }
-}
-
-/* ações do header — ficam fixas à direita */
-.header-actions {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-left: 16px; /* afasta do centro */
-}
-
-/* links agrupados (à esquerda do botão) */
-.header-actions .links {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-}
-.header-actions .links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 6px 8px;
-  transition: color .16s ease;
-}
-.header-actions .links a:hover { color: var(--secondary); }
-
-/* botão Agendar fica no fim (mais à direita) */
-.header-agendar {
-  width: auto !important;
-  min-width: 96px;
-  background: var(--secondary);
-  color: #111;
-  margin-top: 0px;
-  margin-left: 30px;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(244,187,58,0.14);
-}
-
-/* responsivo */
-@media (max-width: 880px) {
-  .header-anim-wrap { display: none; }
-  .header-inner { gap: 10px; }
-  .header-actions { margin-left: 8px; }
-}
-
-
-
-/* === Responsive overrides for mobile and desktop === */
-
-/* container center and padding */
-.page.container, .app-container, .header-inner, .contact-card {
-  box-sizing: border-box;
-}
-
-/* central site container */
-.container, .page.container, .header-inner {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-/* Hero responsiveness */
-.hero {
-  padding: 40px 16px;
-}
-.hero h2 { font-size: 28px; }
-.hero p { font-size: 15px; }
-
-/* Services grid - ensure card stacks on small screens */
-.services {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  padding: 18px 16px;
   gap: 16px;
 }
 
-/* Card responsive */
-.card {
-  padding: 18px;
-  border-radius: 12px;
-}
-
-/* Form full width and responsive */
-form, .modal-card, .contact-card {
-  width: 100%;
-  max-width: 100%;
-  padding: 18px;
-}
-
-/* Make global buttons not force full width in headers/controls */
-.header-agendar, .wa-button, .confirm-btn, .modal-close {
-  width: auto !important;
-}
-
-/* Modal: on small screens occupy nearly full screen */
-@media (max-width: 520px) {
-  .modal-wrap { padding: 0 8px; }
-  .modal-card {
-    border-radius: 12px;
-    width: 100%;
-    max-width: 100%;
-    height: calc(100vh - 40px);
-    max-height: calc(100vh - 40px);
-    padding: 14px;
-    overflow: auto;
+  /* BRAND */
+  .brand strong {
+    font-size: 20px;
+    font-weight: 700;
   }
-  .modal-close { top: 10px; left: 10px; }
-  .confirm-btn { position: sticky; bottom: 8px; z-index: 20; }
-  /* make header compact */
-  .site-header { padding: 10px 12px; }
-  .brand strong { font-size: 18px; }
-  .header-actions .links a { padding: 6px; font-size: 14px; }
+
+  /* LINKS */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-actions .links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .header-actions .links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 8px;
+    transition: .2s;
+  }
+
+  .header-actions .links a:hover {
+    color: #FFD54F;
+  }
+
+  /* BOTÃO AGENDAR */
+  .header-agendar {
+    background: #FFD54F;
+    color: #111;
+    padding: 8px 18px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+  }
+
+  .header-agendar:hover {
+    opacity: .8;
+  }
+
+  /* ======= MOBILE ======= */
+  @media (max-width: 880px) {
+    .header-anim-wrap { display: none; } /* some apenas no mobile pequeno */
+  }
+
+  @media (max-width: 480px) {
+    .header-actions .links {
+      display: none; /* vira menu hamburguer depois */
+    }
+
+    .header-agendar {
+      padding: 6px 12px;
+    }
+  }
+
+  /* ================================
+    HEADER AJUSTADO + MENU MOBILE
+  ==================================*/
+
+  .site-header {
+    background: #111;
+    color: #fff;
+    padding: 10px 16px; /* reduzido para diminuir o espaço lateral */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+
+  /* GRID — esquerda | centro | direita */
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* BRAND */
+  .brand strong {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* CENTRO — Taxi */
+  .header-anim-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    overflow: hidden;
+  }
+
+  .taxi-svg {
+    width: 68px;
+    animation: taxi-drive-center 3.5s linear infinite;
+  }
+
+  @keyframes taxi-drive-center {
+    0%   { transform: translateX(-160%) scale(.95); opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translateX(40%) scale(1); }
+    90%  { opacity: 1; }
+    100% { transform: translateX(160%) scale(.95); opacity: 0; }
+  }
+
+  /* =====================================
+    MENU NORMAL (DESKTOP)
+  ===================================== */
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-actions .links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .header-actions .links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Botão agendar */
+  .header-agendar {
+    background: #FFD54F;
+    color: #111;
+    padding: 8px 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+
+  /* =====================================
+    MENU HAMBÚRGUER — MOBILE
+  ===================================== */
+
+  .hamburger {
+    font-size: 26px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+    /* melhora o alinhamento */
+    padding: 4px;
+    margin-left: -4px; 
+  }
+
+  /* menu escondido por padrão */
+  .mobile-menu {
+    position: absolute;
+    top: 60px;
+    right: 14px;
+
+    background: #111;
+    padding: 16px;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column; /* vira coluna */
+    gap: 14px;
+
+    width: 160px; /* discreto */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.38);
+  }
+
+  .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 6px 0;
+  }
+
+  /* botão agendar dentro do menu */
+  .mobile-menu .header-agendar {
+    width: 100% !important;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+  }
+
+
+  /* =====================================
+    BREAKPOINTS
+  ===================================== */
+
+  @media (max-width: 880px) {
+    .header-anim-wrap { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .header-actions .links {
+      display: none; /* esconde menu normal */
+    }
+  }
+
+  /* =============================
+    AJUSTES DE HEADER NO MOBILE
+  ============================= */
+
+  @media (max-width: 680px) {
+
+    /* some o texto e marca visual para liberar o topo */
+    .brand {
+      display: none !important;
+    }
+
+    /* o menu hamburguer ocupa o lugar da brand */
+    .hamburger {
+      display: block !important;
+      margin-left: 4px;
+      font-size: 30px;
+    }
+
+    /* links desktop continuam ocultos */
+    .desktop-only {
+      display: none !important;
+    }
+
+    /* MOBILE MENU — mantém discreto */
+    .mobile-only {
+      display: block !important;
+    }
+
+    /* posição do carrinho quando em mobile */
+    .header-anim-wrap {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+
+      height: 60px;
+      margin-top: 6px;
+
+      /* empurra ele para baixo (onde hoje está o hambúrguer) */
+      grid-column: 1 / -1;  /* ocupa linha inteira */
+      order: 10;            /* aparece por último */
+    }
+
+    .taxi-svg {
+      width: 70px;
+      animation-duration: 3.6s;
+    }
+  }
+
+  /* ================================================
+    HEADER MOBILE — BRAND VOLTA, HAMBURGUER À DIREITA
+  ================================================ */
+
+  @media (max-width: 680px) {
+
+    /* HEADER vira 2 linhas: topo + taxi abaixo */
+    .header-inner {
+      grid-template-columns: 1fr auto !important;
+      grid-template-rows: auto auto !important;
+      align-items: center;
+    }
+
+    /* BRAND volta para o canto esquerdo */
+    .brand {
+      display: block !important;
+      grid-column: 1 / 2;
+      font-size: 18px;
+    }
+
+    /* BOTÃO AGENDAR SOME */
+    .header-agendar {
+      display: none !important;
+    }
+
+    /* HAMBURGUER vai pro lado direito */
+    .hamburger {
+      display: block !important;
+      grid-column: 2 / 3;
+      justify-self: end;
+      font-size: 30px;
+      margin-right: 4px;
+    }
+
+    /* LINKS DESKTOP ficam ocultos */
+    .desktop-only {
+      display: none !important;
+    }
+
+    /* CARRINHO abaixo e centralizado */
+    .header-anim-wrap {
+      grid-column: 1 / -1;
+      grid-row: 2 / 3;
+      display: flex !important;
+      justify-content: center !important;
+      margin-top: 6px;
+      height: 50px;
+    }
+
+    .taxi-svg {
+      width: 68px;
+      animation-duration: 3.8s;
+    }
+  }
+
+  /* ================================================
+    MENU MOBILE ESTILOSO E EM COLUNA
+  ================================================ */
+
+  .mobile-menu {
+    position: fixed;
+    top: 60px;
+    right: 12px;
+    background: #111;
+    padding: 18px 22px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 99999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    min-width: 160px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: .25s ease;
+  }
+
+  /* quando aberta */
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-menu a {
+    color: white !important;
+    font-size: 17px;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .mobile-menu a:last-child {
+    border-bottom: none;
+  }
+
+  /* Fecha ao clicar fora — overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 9990;
+    display: none;
+  }
+
+  .menu-overlay.open {
+    display: block;
+  }
+
+
+  /* ============================================
+    HEADER BASE
+  ============================================ */
+
+  .site-header {
+    background: #111;
+    color: #fff;
+    padding: 12px 18px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* marca Taxi Wagner */
+  .brand strong {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* carrinho animado (desktop) */
+  .header-anim-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .taxi-svg {
+    width: 70px;
+    animation: taxi-drive 3.5s linear infinite;
+  }
+
+  @keyframes taxi-drive {
+    0% { transform: translateX(-160%); opacity: 0; }
+    10% { opacity: 1; }
+    50% { transform: translateX(40%); }
+    90% { opacity: 1; }
+    100% { transform: translateX(160%); opacity: 0; }
+  }
+
+  /* ============================================
+    MENU DESKTOP
+  ============================================ */
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .header-agendar {
+    background: #FFD54F;
+    color: #111;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ============================================
+    HAMBURGUER BUTTON (MOBILE)
+  ============================================ */
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* ============================================
+    MOBILE MODE
+  ============================================ */
+
+  @media (max-width: 680px) {
+
+    /* reorganiza header em 2 linhas */
+    .header-inner {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+    }
+
+    /* brand volta a aparecer */
+    .brand {
+      display: block !important;
+      grid-column: 1 / 2;
+    }
+
+    /* botão amarelo some */
+    .header-agendar {
+      display: none !important;
+    }
+
+    /* links somem (somente hambúrguer) */
+    .links {
+      display: none !important;
+    }
+
+    /* hambúrguer aparece */
+    .hamburger {
+      display: block !important;
+      grid-column: 2 / 3;
+      justify-self: end;
+    }
+
+    /* CARRINHO ABAIXO E CENTRALIZADO */
+    .header-anim-wrap {
+      grid-column: 1 / -1;
+      grid-row: 2 / 3;
+      display: flex !important;
+      justify-content: center !important;
+      margin-top: 4px;
+      height: 58px;
+    }
+
+    .taxi-svg {
+      width: 76px;
+      animation-duration: 3.6s;
+    }
+  }
+
+  /* ============================================
+    MOBILE MENU (ESTILOSO E EM COLUNA)
+  ============================================ */
+
+  .mobile-menu {
+    position: fixed;
+    top: 70px;
+    right: 16px;
+    background: #111;
+    padding: 18px 22px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    min-width: 170px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: .25s ease;
+  }
+
+  /* QUANDO ABRE */
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-menu a {
+    color: white !important;
+    font-size: 17px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 6px;
+  }
+
+  .mobile-menu a:last-child {
+    border-bottom: none;
+  }
+
+  /* overlay clicável */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    display: none;
+  }
+
+  .menu-overlay.open {
+    display: block;
+  }
+
+.brand a {
+  text-decoration: none !important;
+  color: inherit; /* mantém a cor normal do texto */
 }
 
-/* Mobile typography adjustments */
-@media (max-width: 420px) {
-  .hero h2 { font-size: 22px; }
-  .hero p { font-size: 14px; }
-  .card h3 { font-size: 16px; }
-  header nav a, .header-actions .links a { font-size: 14px; padding: 6px 8px; }
+.hero-bg {
+  background-image: url("../img/mulher-viajando-com-o-carro.jpg"); /* TROQUE AQUI */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  min-height: 450px; /* tamanho recomendado para ficar bonito */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: rgb(255, 255, 255);
+
+  padding: 60px 20px;
+  border-radius: 0;
 }
 
-/* Ensure transfer cards and other grids adapt */
-.transfer-list, .services, .contact-card {
-  padding-left: 12px;
-  padding-right: 12px;
+.hero-bg {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Accessibility: larger touch targets */
-.header-agendar, .wa-button, .confirm-btn {
-  min-height: 44px;
-  padding-left: 14px;
-  padding-right: 14px;
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35); /* efeito escuro */
 }
 
-/* fix overlapping z-index issues */
-.site-header { position: sticky; top: 0; z-index: 11000; }
-.app-content { padding-top: 8px; }
+.hero-bg * {
+  position: relative;
+  z-index: 2;
+}
 
-/* small fix: ensure button elements inside forms don't stretch full width unexpectedly */
-form button { width: 100%; }
-.header-actions button { width: auto !important; }
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  font-family: var(--font-clean, "IBM Plex Sans", sans-serif);
+}
+
+/* Label */
+.booking-form label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: -4px;
+  color: #222;
+}
+
+/* Inputs & Select */
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+  background: #fafafa;
+  font-family: inherit;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+  border-color: #FFD54F;
+  box-shadow: 0 0 0 2px rgba(255, 213, 79, 0.25);
+}
+
+/* Textarea */
+.booking-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Row para data + hora */
+.row-2 {
+  display: flex;
+  gap: 14px;
+}
+
+.row-2 > div {
+  flex: 1;
+}
+
+/* Botão */
+.booking-form button {
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.booking-form button:hover {
+  background: #1ebe5b;
+}
+
+.booking-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Preço */
+.booking-form p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .booking-form {
+    padding: 18px;
+  }
+
+  .row-2 {
+    flex-direction: column;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #FFD54F; /* amarelo Taxi */
+  z-index: 100000;
+  transition: 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  opacity: 0.7;
+}
+
+.wa-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: #25D366;           /* verde WhatsApp */
+  color: #fff;
+  padding: 15px 44px;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+.wa-button:hover {
+  background: #1ebe5b;           /* verde um pouco mais escuro */
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+  transform: translateY(-2px);
+}
+
+.wa-button:active {
+  transform: translateY(0);
+}
+
+

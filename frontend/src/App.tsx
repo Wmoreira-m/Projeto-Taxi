@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import "./styles.css";
 
 import Home from './pages/Home';
 import Transfers from './pages/Transfers';
@@ -7,6 +8,7 @@ import Contato from './pages/Contato';
 import Agendamento from './pages/Agendamento'; // modal .tsx
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 
 export default function App() {
   const [openAgendamento, setOpenAgendamento] = useState(false);

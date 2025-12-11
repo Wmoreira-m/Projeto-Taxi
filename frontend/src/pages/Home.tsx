@@ -8,8 +8,9 @@ type HomeProps = {
 export default function Home({ onOpenAgendamento }: HomeProps) {
   return (
     <div className="page container">
-      <section className="hero">
-        <h1>Taxi Wagner — Conforto e pontualidade</h1>
+      <section className="hero hero-bg">
+        
+        <h1>Conforto e pontualidade</h1>
         <p>Transfers, aeroporto, city-tours e viagens intermunicipais.</p>
 
         <button
@@ -33,9 +34,9 @@ export default function Home({ onOpenAgendamento }: HomeProps) {
         </button>
       </section>
 
-      <section style={{ marginTop: 18 }}>
-        <h3>Serviços populares</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 12 }}>
+      <section style={{ marginTop: 18}}>
+        <h3 style={{ textAlign: "center", fontSize: 25}}>Serviços populares</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 10, marginTop: 18}}>
           <TransferCard title="Transfer Aeroporto" description="Tarifa fixa até 30min de espera." price="Consultar" />
           <TransferCard title="City Tour" description="Roteiro personalizado" price="Sob consulta" />
           <TransferCard title="Viagem Intermunicipal" description="Preço por km" price="Sob consulta" />
