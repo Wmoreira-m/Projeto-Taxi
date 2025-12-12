@@ -1,14 +1,13 @@
-// Agendamento.tsx — SUBSTITUA TODO O ARQUIVO POR ESTE CÓDIGO
-
 import { useEffect, useRef } from "react";
 import EmailForm from "../components/EmailForm";
 
 type AgendamentoProps = {
   isOpen: boolean;
   onClose?: () => void;
+  category?: string;
 };
 
-export default function Agendamento({ isOpen, onClose }: AgendamentoProps) {
+export default function Agendamento({ isOpen, onClose, category }: AgendamentoProps) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -25,9 +24,7 @@ export default function Agendamento({ isOpen, onClose }: AgendamentoProps) {
 
     const timer = setTimeout(() => {
       if (!wrapRef.current) return;
-      const first = wrapRef.current.querySelector<
-        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >("input, textarea, select");
+      const first = wrapRef.current.querySelector("input, textarea, select") as HTMLElement;
       first?.focus();
     }, 80);
 
@@ -49,9 +46,7 @@ export default function Agendamento({ isOpen, onClose }: AgendamentoProps) {
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <div className="modal-card modal-clean">
-
-          {/* FORMULÁRIO SOMENTE */}
-          <EmailForm />
+          <EmailForm defaultCategory={category} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 type Form = {
   name: string;
@@ -7,121 +7,176 @@ type Form = {
   phone: string;
   serviceType: string;
   origin: string;
+  originNumber?: string;
   destination: string;
+  destinationNumber?: string;
   date: string;
   time: string;
-  price?: number;
   notes?: string;
+  luggage?: boolean;
+  luggageQty?: number;
 };
 
-export default function EmailForm() {
+type EmailFormProps = {
+  defaultCategory?: string;
+};
+
+export default function EmailForm({ defaultCategory = "" }: EmailFormProps) {
   const [form, setForm] = useState<Form>({
-    name: '',
-    email: '',
-    phone: '',
-    serviceType: '',
-    origin: '',
-    destination: '',
-    date: '',
-    time: '',
-    price: undefined,
-    notes: ''
+    name: "",
+    email: "",
+    phone: "",
+    serviceType: defaultCategory || "",
+    origin: "",
+    destination: "",
+    date: "",
+    time: "",
+    notes: "",
+    originNumber: "",
+    destinationNumber: "",
+    luggage: false,
+    luggageQty: 0
   });
+
+  const [noOriginNumber, setNoOriginNumber] = useState(false);
+  const [noDestNumber, setNoDestNumber] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
-  // ⭐ MÁSCARA DE TELEFONE (FORMATO AUTOMÁTICO)
   function phoneMask(value: string) {
-    value = value.replace(/\D/g, ""); // remove tudo que não é número
-
+    value = value.replace(/\D/g, "");
     if (value.length > 11) value = value.slice(0, 11);
 
     if (value.length <= 10) {
-      // fixo -> (11) 3456-7890
       return value
         .replace(/^(\d{2})(\d)/, "($1) $2")
         .replace(/(\d{4})(\d)/, "$1-$2");
     }
 
-    // celular -> (11) 98765-4321
     return value
       .replace(/^(\d{2})(\d)/, "($1) $2")
       .replace(/(\d{5})(\d)/, "$1-$2");
-  }
-
-
-  async function calcPrice() {
-    try {
-      const resp = await axios.post('/api/bookings/calc', { distanceKm: 10, serviceType: form.serviceType });
-      setForm(prev => ({ ...prev, price: resp.data.price }));
-      alert('Preço estimado: R$ ' + resp.data.price);
-    } catch (e) {
-      alert('Erro ao calcular preço');
-    }
   }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
+    const api = import.meta.env.VITE_API_URL;
     const finalDateTime = `${form.date} ${form.time}`;
 
+    const payload = {
+      ...form,
+      datetime: finalDateTime,
+      originNumber: noOriginNumber ? "S/N" : form.originNumber,
+      destinationNumber: noDestNumber ? "S/N" : form.destinationNumber,
+      luggageQty: form.luggage ? form.luggageQty : 0
+    };
+
     try {
-      const resp = await axios.post('/api/bookings', { ...form, datetime: finalDateTime });
-      setLoading(false);
+      const resp = await axios.post(`${api}/bookings`, payload);
+
       if (resp.data.waLink) {
-        window.open(resp.data.waLink, '_blank');
-      } else {
-        alert('Reserva criada. ID: ' + resp.data.id);
+        setLoading(false);
+        window.open(resp.data.waLink, "_blank");
+        return;
       }
+
+      alert("Solicitação enviada com sucesso!");
     } catch (err) {
-      setLoading(false);
-      alert('Erro ao criar reserva');
+      console.error(err);
+      alert("Erro ao criar reserva");
     }
+
+    setLoading(false);
   }
 
   return (
     <form className="booking-form" onSubmit={submit}>
-
       <label>Informações</label>
+
       <input
         required
         placeholder="Nome"
         value={form.name}
-        onChange={e => setForm({ ...form, name: e.target.value })}
+        onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
 
       <input
         required
         placeholder="Telefone (ex: (11) 99999-9999)"
         value={form.phone}
-        onChange={e => setForm({ ...form, phone: phoneMask(e.target.value) })}
+        onChange={(e) => setForm({ ...form, phone: phoneMask(e.target.value) })}
         maxLength={15}
       />
 
       <label>Categoria</label>
       <select
+        required
         value={form.serviceType}
-        onChange={e => setForm({ ...form, serviceType: e.target.value })}
+        onChange={(e) => setForm({ ...form, serviceType: e.target.value })}
       >
         <option value="" disabled>Selecione uma categoria</option>
-        <option value="airport">Aeroporto</option>
-        <option value="transfer">Transfer</option>
-        <option value="intercity">Intermunicipal</option>
+        <option value="Executivos/Corporativos">Executivos/Corporativos</option>
+        <option value="Aeroporto">Aeroporto</option>
+        <option value="Litoral">Litoral</option>
+        <option value="Cruzeiro">Cruzeiro</option>
+        <option value="Citytour">City Tour</option>
+        <option value="Intermunicipal">Intermunicipal</option>
+        <option value="Eventos">Eventos</option>
+        <option value="Translado_Internacional">Translado Internacional</option>
+
       </select>
 
+      {/* ORIGEM */}
       <input
-        placeholder="Origem"
-        value={form.origin}
-        onChange={e => setForm({ ...form, origin: e.target.value })}
-      />
+  placeholder="Origem (Rua, Avenida...)"
+  value={form.origin}
+  onChange={(e) => setForm({ ...form, origin: e.target.value })}
+/>
 
+{!noOriginNumber && (
+  <input
+    placeholder="Número"
+    value={form.originNumber}
+    onChange={(e) => setForm({ ...form, originNumber: e.target.value })}
+  />
+)}
+
+<div className="checkbox-line">
+  <input
+    type="checkbox"
+    checked={noOriginNumber}
+    onChange={() => setNoOriginNumber(!noOriginNumber)}
+  />
+  <span>Sem número</span>
+</div>
+
+      {/* DESTINO */}
       <input
-        placeholder="Destino"
-        value={form.destination}
-        onChange={e => setForm({ ...form, destination: e.target.value })}
-      />
+  placeholder="Destino (Rua, Avenida...)"
+  value={form.destination}
+  onChange={(e) => setForm({ ...form, destination: e.target.value })}
+/>
 
+{!noDestNumber && (
+  <input
+    placeholder="Número"
+    value={form.destinationNumber}
+    onChange={(e) => setForm({ ...form, destinationNumber: e.target.value })}
+  />
+)}
+
+<div className="checkbox-line">
+  <input
+    type="checkbox"
+    checked={noDestNumber}
+    onChange={() => setNoDestNumber(!noDestNumber)}
+  />
+  <span>Sem número</span>
+</div>
+
+      {/* DATA E HORA */}
       <div className="row-2">
         <div>
           <label>Data</label>
@@ -129,7 +184,7 @@ export default function EmailForm() {
             required
             type="date"
             value={form.date}
-            onChange={e => setForm({ ...form, date: e.target.value })}
+            onChange={(e) => setForm({ ...form, date: e.target.value })}
           />
         </div>
 
@@ -139,27 +194,45 @@ export default function EmailForm() {
             required
             type="time"
             value={form.time}
-            onChange={e => setForm({ ...form, time: e.target.value })}
+            onChange={(e) => setForm({ ...form, time: e.target.value })}
           />
         </div>
       </div>
 
+      {/* MALA */}
+<div className="checkbox-line">
+  <input
+    type="checkbox"
+    checked={form.luggage}
+    onChange={() => setForm({ ...form, luggage: !form.luggage })}
+  />
+  <span>Tenho malas</span>
+</div>
+
+      {form.luggage && (
+        <input
+          type="number"
+          placeholder="Quantidade de malas"
+          min={1}
+          max={10}
+          value={form.luggageQty}
+          onChange={(e) =>
+            setForm({ ...form, luggageQty: Number(e.target.value) })
+          }
+        />
+      )}
+
       <textarea
         placeholder="Observações (opcional)"
         value={form.notes}
-        onChange={e => setForm({ ...form, notes: e.target.value })}
+        onChange={(e) => setForm({ ...form, notes: e.target.value })}
       />
 
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: "flex", gap: 8 }}>
         <button type="submit" disabled={loading}>
-          {loading ? 'Enviando...' : 'Confirmar Agendamento'}
+          {loading ? "Enviando..." : "Confirmar Agendamento"}
         </button>
       </div>
-
-      {form.price !== undefined && (
-        <p>Preço estimado: R$ {form.price}</p>
-      )}
-
     </form>
   );
 }

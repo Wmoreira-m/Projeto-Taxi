@@ -5,44 +5,61 @@ import "./styles.css";
 import Home from './pages/Home';
 import Transfers from './pages/Transfers';
 import Contato from './pages/Contato';
-import Agendamento from './pages/Agendamento'; // modal .tsx
+import Agendamento from './pages/Agendamento';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const [openAgendamento, setOpenAgendamento] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  // 👉 Função única usada pela Home, Header e Transfers
+  function openModalWithCategory(category?: string) {
+    if (category) {
+      setSelectedCategory(category);  // salva a categoria escolhida
+    } else {
+      setSelectedCategory(""); // se abrir manualmente, deixa vazio
+    }
+
+    setOpenAgendamento(true); // abre modal
+  }
 
   return (
-    <div className="app-container">
-      {/* passa a função pro Header caso você tenha um botão lá */}
-      <Header onOpenAgendamento={() => setOpenAgendamento(true)} />
+    <>
+      <ScrollToTop />
+      <div className="app-container">
 
-      <main className="app-content">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home onOpenAgendamento={() => setOpenAgendamento(true)} />}
-          />
-          <Route
-            path="/transfers"
-            element={<Transfers onOpenAgendamento={() => setOpenAgendamento(true)} />}
-          />
-          <Route
-            path="/contato"
-            element={<Contato onOpenAgendamento={() => setOpenAgendamento(true)} />}
-          />
-          {/* Não deixe <Home .../> solto aqui — tudo dentro de <Routes> precisa ser <Route ... /> */}
-        </Routes>
-      </main>
+        <Header onOpenAgendamento={() => openModalWithCategory()} />
 
-      <Footer />
+        <main className="app-content">
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Home onOpenAgendamento={() => openModalWithCategory()} />} 
+            />
 
-      {/* Modal agendamento sempre declarado aqui (fora das Routes) */}
-      <Agendamento
-        isOpen={openAgendamento}
-        onClose={() => setOpenAgendamento(false)}
-      />
-    </div>
+            <Route 
+              path="/transfers"
+              element={<Transfers onOpenAgendamento={openModalWithCategory} />} 
+            />
+
+            <Route 
+              path="/contato"
+              element={<Contato onOpenAgendamento={() => openModalWithCategory()} />} 
+            />
+          </Routes>
+        </main>
+
+        <Footer />
+
+        {/* Modal */}
+        <Agendamento
+          isOpen={openAgendamento}
+          onClose={() => setOpenAgendamento(false)}
+          category={selectedCategory}  
+        />
+      </div>
+    </>
   );
 }

@@ -1,17 +1,29 @@
-import React from 'react';
-
-type Props = {
+type TransferCardProps = {
   title: string;
   description: string;
-  price?: number | string;
+  image?: string;
+  onClick?: () => void;
 };
 
-export default function TransferCard({ title, description, price }: Props) {
+export default function TransferCard({ title, description, image, onClick }: TransferCardProps) {
   return (
-    <div className="card transfer-card">
+    <div className="transfer-card">
+
+      {image && (
+        <img className="transfer-card-img" src={image} alt={title} />
+      )}
+
       <h4>{title}</h4>
       <p>{description}</p>
-      {price !== undefined && <p><strong>Preço: </strong>R$ {price}</p>}
+
+      {onClick && (
+        <button 
+          className="card-agendar-btn"
+          onClick={onClick}
+        >
+          📅 Agendar
+        </button>
+      )}
     </div>
   );
 }
