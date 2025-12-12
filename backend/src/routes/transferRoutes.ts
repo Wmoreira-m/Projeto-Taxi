@@ -1,20 +1,9 @@
-import { Router } from 'express';
-import { createBooking, calcPrice } from '../controllers/emailController';
+import { Router } from "express";
+import { createBooking } from "../controllers/transferController";
 
 const router = Router();
 
-/**
- * POST /api/bookings/calc
- * body: { distanceKm, perKm, serviceType, waitingMinutes }
- * returns: { price }
- */
-router.post('/bookings/calc', calcPrice);
-
-/**
- * POST /api/bookings
- * body: { name, email, phone, serviceType, origin, destination, date, price, notes }
- * returns: { ok, id, waLink, waClientLink, booking }
- */
-router.post('/bookings', createBooking);
+// criar agendamento → WhatsApp
+router.post("/bookings", createBooking);
 
 export default router;

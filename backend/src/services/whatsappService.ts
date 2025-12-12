@@ -3,26 +3,31 @@
 import config from '../config';
 
 export function buildWhatsAppMessage(driverNumber: string, booking: any) {
-  // booking contains name, phone, serviceType, origin, destination, date, price, notes
   const parts = [
-    `*Nova Reserva — Taxi Wagner*`,
+    `*Nova Solicitação – Taxi Wagner*`,
     `Cliente: ${booking.name}`,
     `Telefone: ${booking.phone}`,
     `Serviço: ${booking.serviceType}`,
+
     booking.origin ? `Origem: ${booking.origin}` : null,
+    booking.originNumber ? `Número origem: ${booking.originNumber}` : null,
+
     booking.destination ? `Destino: ${booking.destination}` : null,
-    `Data/Hora: ${booking.date}`,
-    `Preço estimado: R$ ${booking.price}`,
+    booking.destinationNumber ? `Número destino: ${booking.destinationNumber}` : null,
+
+    booking.datetime ? `Data/Hora: ${booking.datetime}` : null,
+
+    booking.luggage ? `Malas: ${booking.luggageQty}` : `Malas: Não`,
+
     booking.notes ? `Observações: ${booking.notes}` : null,
-    '',
-    'Favor confirmar a corrida. Obrigado!'
+
+    "",
+    "Favor confirmar a corrida. Obrigado!"
   ].filter(Boolean);
 
-  return parts.join('\n');
+  return parts.join("\n");
 }
 
 export function whatsappUrlFor(driverNumber: string, text: string) {
-  // driverNumber must be in format like '5511999998888' (no +, no spaces)
-  const encoded = encodeURIComponent(text);
-  return `https://wa.me/${driverNumber}?text=${encoded}`;
+  return `https://wa.me/${driverNumber}?text=${encodeURIComponent(text)}`;
 }
